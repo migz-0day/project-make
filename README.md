@@ -1,6 +1,6 @@
 # project-make
 a bash script to automatically generate structured project directories with .env ,.gitignore ,git initialization 
-
+.Now it has python script with same funtions and features as the bash Script .
 ## features 
 -Name for folder name, main file name and file extension
 -creates .env and adds it to .gitignore.
