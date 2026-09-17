@@ -21,7 +21,7 @@ touch .env
 echo ".env" > .gitignore
 echo "node_modules/" >> .gitignore
 
-FULL_FILE="${FILE_NAME}. ${FILE_EXT}"
+FULL_FILE="${FILE_NAME}.${FILE_EXT}"
 touch "$FULL_FILE"
 echo "created $FULL_FILE"
 
