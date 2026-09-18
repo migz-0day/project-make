@@ -2,6 +2,9 @@ import os
 import subprocess
 import sys
 
+def run_cmd(command):
+   subprocess.run(command,shell=True,stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
 def main():
     print("=== make project instantly === ")
 FOLDER_NAME=input("enter the project folder name : ")
@@ -34,15 +37,34 @@ if FILE_EXT in ["js","ts"]:
  print("javascript/typescript found.initializing node project...")
  subprocess.run("npm init -y", shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
-if FILE_EXT=="ts":
+if FILE_EXT in ["ts","tsx"]:
    print("installing typescript depende....")
    subprocess.run("npm install --save-dev typescript @types/node", shell=True,stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
    subprocess.run("npx tsc --init",shell=True,stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
-subprocess.run("git init")
+if FILE_EXT in ["jsx","tsx"]:
+   print("react......")
+   run_cmd("npm install react react-dom")
+   if FILE_EXT=="tsx":
+        run_cmd("npm install --save-dev @types/react @types/react-dom")
+
+with open(FULL_FILE,"w") as f:
+ if FILE_EXT in ["jsx","tsx"]:
+   f.write("import React from 'react'\nexport default function App(){\n return <h1>hello react</h1>;\n}\n") 
+ else:
+   f.write("// main entry\n console.log('hello world');\n") 
+    
+if FILE_EXT=="go":
+   print("go detected.Go modules ....")
+   run_cmd(f"go mod init {FOLDER_NAME}")
+   with open(FULL_FILE,"w") as f:
+      f.write("package main\n\nimport \"fmt\"\n\nfunc main() {\n\tfmt.println(\"hello world\")\n}\n")    
+
+
+run_cmd("git init")
 
 print("==========m====i====g====z===========")
-print(f"project {FOLDER_NAME}created successfully")
+print(f"project {FOLDER_NAME} created successfully")
 print(f"main file {FILE_NAME}")
 print("==========m====i====g====z===========")
 if __name__=="__main__":
