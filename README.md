@@ -35,7 +35,7 @@ sudo cp create-project.sh /usr/local/bin/create-project
 ## for python script
 on teminal
 ```bash
-function (universal name on how to call it){ python "c:\path\of\file\make_project.py" @args }
+function (universal name on how to call it){ python "c:\path\of\file\creat_project.py" @args }
 ```
 
 
