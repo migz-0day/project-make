@@ -63,10 +63,10 @@ if FILE_EXT=="go":
 
 run_cmd("git init")
 
-print("==========m====i====g====z===========")
+print("="*9,"m","="*9,"i","="*9,"g","="*9,"z","="*9)
 print(f"project {FOLDER_NAME} created successfully")
 print(f"main file {FILE_NAME}")
-print("==========m====i====g====z===========")
+print("="*9,"m","="*9,"i","="*9,"g","="*9,"z","="*9)
 if __name__=="__main__":
  main()
 
