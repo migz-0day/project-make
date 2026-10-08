@@ -1,3 +1,4 @@
+#!/bin/bash
 import os
 import subprocess
 import sys
@@ -6,10 +7,10 @@ def run_cmd(command):
    subprocess.run(command,shell=True,stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 def main():
-    print("=== make project instantly === ")
+    print("=== make project === ")
 FOLDER_NAME=input("enter the project folder name : ")
 FILE_NAME=input("enter file name without extension : ")
-FILE_EXT=input("enter file extension (js,ts,py,go,rs) : ")
+FILE_EXT=input("enter file extension (js,ts,py,go,rs,) : ")
 
 if not FOLDER_NAME or not FILE_NAME or not FILE_EXT:
     print(f"error all field required")
@@ -53,20 +54,20 @@ with open(FULL_FILE,"w") as f:
    f.write("import React from 'react'\nexport default function App(){\n return <h1>hello react</h1>;\n}\n") 
  else:
    f.write("// main entry\n console.log('hello world');\n") 
-    
-if FILE_EXT=="go":
+
+with open(FULL_FILE,"w") as f:    
+ if FILE_EXT=="go":
    print("go detected.Go modules ....")
    run_cmd(f"go mod init {FOLDER_NAME}")
-   with open(FULL_FILE,"w") as f:
-      f.write("package main\n\nimport \"fmt\"\n\nfunc main() {\n\tfmt.println(\"hello world\")\n}\n")    
-
+   f.write("package main\n\nimport \"fmt\"\n\nfunc main() {\n\tfmt.println(\"hello world\")\n}\n")    
 
 run_cmd("git init")
 
 print("="*9,"m","="*9,"i","="*9,"g","="*9,"z","="*9)
-print(f"project {FOLDER_NAME} created successfully")
-print(f"main file {FILE_NAME}")
+print(f"[*] project {FOLDER_NAME} created successfully")
+print( f"[*] main file {FILE_NAME}")
 print("="*9,"m","="*9,"i","="*9,"g","="*9,"z","="*9)
+
 if __name__=="__main__":
  main()
 
